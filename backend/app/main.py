@@ -1,3 +1,5 @@
+# main.py - FastAPI application for URL shortening service
+
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
@@ -9,15 +11,18 @@ from .models import URL
 from .schemas import URLCreate, URLResponse
 from .utils import encode_base62
 
+# Load environment variables from .env file
 load_dotenv()
 
+# Create database tables based on the defined models
 Base.metadata.create_all(bind=engine)
 
+# Initialize FastAPI application
 app = FastAPI()
 
 BASE_URL = os.getenv("BASE_URL")
 
-
+# get_db -> dependency function to get a database session for each request
 def get_db():
     db = SessionLocal()
     try:
@@ -25,7 +30,7 @@ def get_db():
     finally:
         db.close()
 
-
+# shorten_url -> API endpoint to create a shortened URL
 @app.post("/api/v1/shorten", response_model=URLResponse)
 def shorten_url(request: URLCreate, db: Session = Depends(get_db)):
     # Step 1: check if already exists
@@ -53,6 +58,7 @@ def shorten_url(request: URLCreate, db: Session = Depends(get_db)):
     return {"short_url": f"{BASE_URL}/{short_code}"}
 
 
+# redirect -> API endpoint to redirect from a short code to the original long URL
 @app.get("/{short_code}")
 def redirect(short_code: str, db: Session = Depends(get_db)):
     url = db.query(URL).filter(URL.short_code == short_code).first()
