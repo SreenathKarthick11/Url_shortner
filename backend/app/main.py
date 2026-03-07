@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.responses import RedirectResponse
+from contextlib import asynccontextmanager
 import os
 from dotenv import load_dotenv
 
@@ -12,12 +13,21 @@ load_dotenv()
 
 BASE_URL = os.getenv("BASE_URL")
 
-app = FastAPI()
 
-
-@app.on_event("startup")
-async def startup():
+# Lifespan event handler
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
     await connect_db()
+    print("Database connected")
+
+    yield
+
+    # Shutdown (optional cleanup)
+    print("Application shutting down")
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.post("/api/v1/shorten", response_model=URLResponse)
@@ -28,20 +38,20 @@ async def shorten_url(request: URLCreate, conn=Depends(get_db)):
     if not url.startswith("http://") and not url.startswith("https://"):
         url = "https://" + url
 
-    # Step 1: Check if URL already exists
+    # Check existing
     existing = await queries.get_url_by_long_url(conn, url)
 
     if existing and existing["short_code"]:
         return {"short_url": f"{BASE_URL}/{existing['short_code']}"}
 
-    # Step 2: Insert URL
+    # Insert URL
     row = await queries.insert_url(conn, url)
     id = row["id"]
 
-    # Step 3: Generate short code
+    # Generate short code
     short_code = encode_base62(id)
 
-    # Step 4: Update short code
+    # Update row
     await queries.update_short_code(conn, id, short_code)
 
     return {"short_url": f"{BASE_URL}/{short_code}"}
