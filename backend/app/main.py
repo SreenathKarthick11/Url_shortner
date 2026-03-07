@@ -3,6 +3,7 @@ from fastapi.responses import RedirectResponse
 from contextlib import asynccontextmanager
 import os
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 from .database import connect_db, get_db
 from .schemas import URLCreate, URLResponse
@@ -28,7 +29,13 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # React dev server
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/api/v1/shorten", response_model=URLResponse)
 async def shorten_url(request: URLCreate, conn=Depends(get_db)):
