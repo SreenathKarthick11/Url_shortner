@@ -3,9 +3,16 @@ import { useState } from "react";
 function App() {
   const [url, setUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
+  const [loading,setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleShorten = async () => {
 
+    if(!url) return;
+    setLoading(true);
+    setError("");
+
+    try {
     const response = await fetch("http://localhost:8000/api/v1/shorten", {
       method: "POST",
       headers: {
@@ -15,8 +22,20 @@ function App() {
         long_url: url
       })
     });
+
+    if (!response.ok) {
+      throw new Error("Failed to shorten URL");
+    }
+
     const data = await response.json();
     setShortUrl(data.short_url);
+
+    } catch (err) {
+      setError("Something went wrong. Try again.");
+      
+    } finally {      
+      setLoading(false);
+    }
   };
 
   return (
@@ -29,7 +48,10 @@ function App() {
         value={url}
         onChange={(e) => setUrl(e.target.value)}
       />
-      <button onClick={handleShorten}>Shorten URL</button>
+      <button onClick={handleShorten} disabled={loading}>
+        {loading ? "Shortening..." : "Shorten URL"}
+        {error && <p style={{color: "red"}}>{error}</p>}
+      </button>
 
       {shortUrl && (
         <div>
