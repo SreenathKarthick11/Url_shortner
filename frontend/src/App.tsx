@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function App() {
   const [url, setUrl] = useState("");
+  const [shortUrl, setShortUrl] = useState("");
 
   const handleShorten = async () => {
 
@@ -15,7 +16,7 @@ function App() {
       })
     });
     const data = await response.json();
-    console.log(data);
+    setShortUrl(data.short_url);
   };
 
   return (
@@ -29,6 +30,13 @@ function App() {
         onChange={(e) => setUrl(e.target.value)}
       />
       <button onClick={handleShorten}>Shorten URL</button>
+
+      {shortUrl && (
+        <div>
+          <p>Short URL:</p>
+          <a href={shortUrl}>{shortUrl}</a>
+        </div>
+      )}
     </div>
   );
 }
