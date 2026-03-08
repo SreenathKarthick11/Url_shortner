@@ -42,7 +42,6 @@ function App() {
 
   const copyToClipboard = async () => {
     await navigator.clipboard.writeText(shortUrl);
-    alert("Copied!");
   };
 
   return (
