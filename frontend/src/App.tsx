@@ -68,13 +68,13 @@ function App() {
 
       {shortUrl && (
         <div className="result">
-          <p>Short URL:</p>
-          <a href={shortUrl} target="_blank" rel="noopener noreferrer" className="short-link">
-            {shortUrl}
-          </a>
-          <button className="copy-btn" onClick={copyToClipboard}>
-            Copy
-          </button>
+          <div className="result-row">
+            <a href={shortUrl} target="_blank" rel="noopener noreferrer" className="short-link">
+              {shortUrl}
+            </a>
+            <div className="copy-btn" onClick={copyToClipboard}>
+            </div>
+          </div>
         </div>
       )}
 
