@@ -25,6 +25,8 @@ async def get_db():
     async with pool.acquire() as connection:
         yield connection
 
+# init_db -> 
+# a function that creates a intial table in the postgres server if no table urls
 async def init_db():
     async with pool.acquire() as conn:
         await conn.execute("""

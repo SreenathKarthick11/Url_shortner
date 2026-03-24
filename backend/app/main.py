@@ -77,6 +77,7 @@ async def redirect(short_code: str, conn=Depends(get_db)):
     return RedirectResponse(row["long_url"])
 
 @app.get("/api/v1/urls")
+# give contents for the dashboard for recently accessed links
 async def get_urls(conn=Depends(get_db)):
     rows = await queries.content(conn)
     return [dict(row) for row in rows]

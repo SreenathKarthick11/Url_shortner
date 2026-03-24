@@ -46,6 +46,8 @@ async def get_url_by_code(conn, short_code: str):
     """
     return await conn.fetchrow(query, short_code)
 
+# incr_clicks -> 
+# incremnet the clicks for each time the shortened url used for redirect 
 async def incr_click(conn,short_code):
     query = """
     UPDATE urls
@@ -54,10 +56,13 @@ async def incr_click(conn,short_code):
     """
     return await conn.execute(query,short_code)
 
+
+# content ->
+# this query return the recently created used 5 links 
 async def content(conn):
     query = """
     SELECT id, long_url, short_code, clicks, created_at
     FROM urls
-    ORDER BY created_at DESC LIMIT 10
+    ORDER BY created_at DESC LIMIT 5
     """
     return await conn.fetch(query)
