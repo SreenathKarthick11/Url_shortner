@@ -11,3 +11,5 @@ CREATE TABLE urls (
 
 CREATE INDEX idx_short_code ON urls(short_code);
 ```
+
+[Live](https://url-shortner-lgwc.onrender.com)
