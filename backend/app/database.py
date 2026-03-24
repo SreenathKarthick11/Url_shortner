@@ -31,7 +31,7 @@ async def init_db():
         CREATE TABLE IF NOT EXISTS urls (
             id SERIAL PRIMARY KEY,
             long_url TEXT NOT NULL,
-            short_code TEXT UNIQUE NOT NULL,
+            short_code TEXT UNIQUE,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         """)
