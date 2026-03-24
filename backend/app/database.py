@@ -32,6 +32,7 @@ async def init_db():
             id SERIAL PRIMARY KEY,
             long_url TEXT NOT NULL,
             short_code TEXT UNIQUE,
+            clicks INTEGER DEFAULT 0,               
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         """)

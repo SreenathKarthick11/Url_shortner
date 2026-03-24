@@ -45,3 +45,19 @@ async def get_url_by_code(conn, short_code: str):
     LIMIT 1
     """
     return await conn.fetchrow(query, short_code)
+
+async def incr_click(conn,short_code):
+    query = """
+    UPDATE urls
+    SET clicks = clicks + 1
+    WHERE short_code = $1
+    """
+    return await conn.execute(query,short_code)
+
+async def content(conn):
+    query = """
+    SELECT id, long_url, short_code, clicks, created_at
+    FROM urls
+    ORDER BY created_at DESC LIMIT 10
+    """
+    return await conn.fetch(query)
