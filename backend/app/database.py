@@ -17,7 +17,7 @@ pool = None
 # initializes the connection pool to the PostgreSQL database using the provided DATABASE_URL.
 async def connect_db():
     global pool
-    pool = await asyncpg.create_pool(DATABASE_URL)
+    pool = await asyncpg.create_pool(DATABASE_URL,ssl='require')
 
 # get_db -> 
 # a dependency function that acquires a connection from the pool for use in API endpoints.
