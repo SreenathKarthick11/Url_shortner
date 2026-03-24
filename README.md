@@ -6,16 +6,6 @@ A production-ready URL shortening service that transforms long, unwieldy links i
 
 ---
 
-## Table of Contents
-- [Features](#-features)
-- [Architecture](#-architecture)
-- [How It Works](#-how-it-works)
-- [API Reference](#-api-reference)
-- [Database Schema](#-database-schema)
-- [Tech Stack](#-tech-stack)
-
----
-
 ## Features
 
 ### Core Functionality
@@ -35,26 +25,30 @@ A production-ready URL shortening service that transforms long, unwieldy links i
 ```mermaid
 graph TB
     subgraph "Frontend"
-        A[React App]
-        B[Dashboard Page]
-        C[URL Form]
+        direction LR
+        A[React App]:::frontend
+        B[Dashboard Page]:::frontend
+        C[URL Form]:::frontend
     end
     
     subgraph "Backend API"
-        D[FastAPI Server]
-        E["POST /api/v1/shorten"]
-        F["GET /{short_code}"]
-        G["GET /api/v1/urls"]
+        direction LR
+        D[FastAPI Server]:::backend
+        E["POST /api/v1/shorten"]:::backend
+        F["GET /{short_code}"]:::backend
+        G["GET /api/v1/urls"]:::backend
     end
     
     subgraph "Database"
-        H[(PostgreSQL)]
-        I[urls table]
+        direction LR
+        H[(PostgreSQL)]:::database
+        I[urls table]:::database
     end
     
     subgraph "External"
-        J[End User]
-        K[Target Website]
+        direction LR
+        J[End User]:::external
+        K[Target Website]:::external
     end
     
     J -->|Visits| A
@@ -74,6 +68,11 @@ graph TB
     G -->|Query last 5| H
     H --> I
     G -->|Display stats| B
+
+    classDef frontend fill:#bbdefb,stroke:#1976d2,stroke-width:2px,color:#000
+    classDef backend fill:#ffe0b2,stroke:#f57c00,stroke-width:2px,color:#000
+    classDef database fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#000
+    classDef external fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px,color:#000
 ```
 
 ### Data Flow
