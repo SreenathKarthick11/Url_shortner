@@ -42,9 +42,9 @@ graph TB
     
     subgraph "Backend API"
         D[FastAPI Server]
-        E[POST /api/v1/shorten]
-        F[GET /{short_code}]
-        G[GET /api/v1/urls]
+        E["POST /api/v1/shorten"]
+        F["GET /{short_code}"]
+        G["GET /api/v1/urls"]
     end
     
     subgraph "Database"
@@ -77,9 +77,9 @@ graph TB
 ```
 
 ### Data Flow
-1. **Link Creation:** User submits URL → Backend checks database → Generates short code → Returns shortened link
-2. **Redirection:** User clicks short link → System retrieves original URL → Increments click counter → Redirects to destination
-3. **Analytics:** Dashboard fetches recent URLs → Displays with click counts
+1. **Link Creation:** User submits URL -> Backend checks database -> Generates short code -> Returns shortened link
+2. **Redirection:** User clicks short link -> System retrieves original URL -> Increments click counter -> Redirects to destination
+3. **Analytics:** Dashboard fetches recent URLs -> Displays with click counts
 
 ---
 
