@@ -1,15 +1,11 @@
 * {
   font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background:
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-    url("./assets/back.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: #037d75;
 
   display: flex;
   justify-content: center;
@@ -17,124 +13,148 @@ body {
   height: 100vh;
 }
 
-/* main card */
+/* container */
 
 .container {
   width: 400px;
-  background: rgba(255, 255, 255, 0.356);
-  backdrop-filter: blur(2px);
-  padding: 32px;
-  border-radius: 16px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
   border: 1px solid #e5e5e5;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  text-align: center;
 }
 
 /* title */
 
 .title {
-  margin-bottom: 24px;
+  margin-bottom: 22px;
   font-size: 22px;
   font-weight: 600;
-  color: #040404;
-  text-align: center;
+  color: #111;
 }
 
 /* input */
 
 .url-input {
-  width: 93%;
+  width: 100%;
   padding: 12px;
+
   font-size: 14px;
-  font-weight: 500;
   border-radius: 6px;
   border: 1px solid #d6d6d6;
 
-  outline: none;
   margin-bottom: 14px;
+  outline: none;
+  transition: border 0.2s;
 }
 
 .url-input:focus {
-  border-color: #9ca3af;
+  border-color: #000;
 }
 
-/* shorten button */
+/* button */
 
 .shorten-btn {
   width: 100%;
   padding: 11px;
 
-  background: #100f0ff1;
+  background: #111;
   color: white;
 
   border: none;
   border-radius: 6px;
 
   font-size: 14px;
-  cursor: pointer;
   font-weight: 500;
-  transition: background 0.15s;
+  cursor: pointer;
+
+  transition: all 0.15s ease;
 }
 
 .shorten-btn:hover {
-  background: #72a1d4;
+  background: #333;
+  transform: translateY(-1px);
+}
+
+.shorten-btn:active {
+  transform: scale(0.98);
+}
+
+.shorten-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* error */
+
+.error {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #e34d4d;
 }
 
 /* result box */
 
 .result {
-  margin-top: 22px;
-  padding: 16px;
+  margin-top: 20px;
+  padding: 14px;
 
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.35);
-
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(6px);
+  border-radius: 6px;
+  border: 1px solid #e5e5e5;
 }
 
+/* layout */
 
-/* link + button container */
-
-.result-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
+.result-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-/* short link */
+/* link */
 
-.short-link{
-  font-size:16px;
-  color:#000000;
-  text-decoration:none;
-  font-weight: 600;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+.short-link {
+  flex: 1;
+
+  font-size: 14px;
+  color: #374151;
+  text-decoration: none;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.short-link:hover{
-  text-decoration:underline;
+.short-link:hover {
+  text-decoration: underline;
 }
 
 /* copy button */
 
-.copy-btn{
-  width:36px;
-  height:32px;
+.copy-btn {
+  min-width: 60px;
+  padding: 7px 10px;
 
-  border-radius:6px;
-  border:1px solid rgba(255,255,255,0.4);
-  background-color: whitesmoke;
-  background-image:url("./assets/copy.png");
-  background-size:18px 18px;
-  background-repeat:no-repeat;
-  background-position:center;
+  font-size: 12px;
+  border-radius: 6px;
 
-  cursor:pointer;
-  transition:all 0.15s ease;
+  border: 1px solid #d4d4d4;
+  background: #f3f4f6;
+  color: #374151;
+
+  cursor: pointer;
+  text-align: center;
+
+  transition: all 0.15s ease;
 }
 
-.copy-btn:hover{
-  background-color: #83b6edf0;
+.copy-btn:hover {
+  background: #e5e7eb;
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
 }
