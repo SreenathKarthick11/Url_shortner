@@ -16,7 +16,7 @@ function App() {
 
     try {
 
-      const response = await fetch("http://localhost:8000/api/v1/shorten", {
+      const response = await fetch("https://url-shortner-p316.onrender.com/api/v1/shorten", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
