@@ -1,8 +1,8 @@
 # URL Shortener
 
-A production-ready URL shortening service that transforms long, unwieldy links into concise, shareable URLs. Built with modern web technologies, it offers instant link generation, click tracking, and a clean dashboard for monitoring your links.
+A URL shortening service that transforms long, unwieldy links into concise, shareable URLs. Built with modern web technologies, it offers instant link generation, click tracking, and a clean dashboard for monitoring your links.
 
-**Live Demo:** [https://url-shortner-lgwc.onrender.com](https://url-shortner-lgwc.onrender.com)
+**Live Demo:** [Link](https://url-shortner-lgwc.onrender.com)
 
 ---
 
