@@ -158,3 +158,54 @@ body {
 .copy-btn:active {
   transform: scale(0.95);
 }
+
+/* list */
+
+.list {
+  margin-top: 25px;
+  text-align: left;
+}
+
+.list h3 {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.list-item {
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.list-left {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.clicks {
+  color: #6b7280;
+}
+
+.long-url {
+  color: #9ca3af;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #2563eb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
