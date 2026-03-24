@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 
-from .database import connect_db, get_db
+from .database import connect_db, get_db,init_db
 from .schemas import URLCreate, URLResponse
 from .utils import encode_base62
 from . import queries
@@ -21,7 +21,7 @@ async def lifespan(app: FastAPI):
     # Startup
     await connect_db()
     print("Database connected")
-
+    await init_db()
     yield
 
     # Shutdown (optional cleanup)

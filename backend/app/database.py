@@ -24,3 +24,14 @@ async def connect_db():
 async def get_db():
     async with pool.acquire() as connection:
         yield connection
+
+async def init_db():
+    async with pool.acquire() as conn:
+        await conn.execute("""
+        CREATE TABLE IF NOT EXISTS urls (
+            id SERIAL PRIMARY KEY,
+            long_url TEXT NOT NULL,
+            short_code TEXT UNIQUE NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        """)
