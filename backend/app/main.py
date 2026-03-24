@@ -69,7 +69,7 @@ async def redirect(short_code: str, conn=Depends(get_db)):
 
     row = await queries.get_url_by_code(conn, short_code)
     # increment clicks
-    inc=await queries.incr_click(conn,short_code) 
+    await queries.incr_click(conn,short_code) 
 
     if not row:
         raise HTTPException(status_code=404, detail="URL not found")
@@ -78,6 +78,6 @@ async def redirect(short_code: str, conn=Depends(get_db)):
 
 @app.get("/api/v1/urls")
 async def get_urls(conn=Depends(get_db)):
-    rows = queries.content(conn)
-    return rows
+    rows = await queries.content(conn)
+    return [dict(row) for row in rows]
 
