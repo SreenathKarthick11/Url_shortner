@@ -20,6 +20,18 @@ A URL shortening service that transforms long, unwieldy links into concise, shar
 
 ---
 
+---
+
+## User Interface
+
+### Home
+![UI](/assets/UI.png)
+
+### Dashboard
+![dash](/assets/UI_dash.png)
+
+---
+
 ## Architecture
 
 ```mermaid
