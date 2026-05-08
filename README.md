@@ -2,7 +2,7 @@
 
 A URL shortening service that transforms long, unwieldy links into concise, shareable URLs. Built with modern web technologies, it offers instant link generation, click tracking, and a clean dashboard for monitoring your links.
 
-**Live Demo:** [Link](https://url-shortner-lgwc.onrender.com)
+**Live Demo:** The Live Link is terminated as postgres online database free pass is over.
 
 ---
 
@@ -18,7 +18,6 @@ A URL shortening service that transforms long, unwieldy links into concise, shar
 - **Fast Redirects** - Optimized database queries for minimal latency
 - **Collision-Free IDs** - Base62 encoding ensures unique, URL-safe short codes
 
----
 
 ---
 
